@@ -11,7 +11,7 @@ import javax.persistence.Column;
 
 @Entity
 @Cacheable
-@Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
+@org.hibernate.annotations.Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
 @Table(name="roletbl")
 public class Role {
 	@Id
