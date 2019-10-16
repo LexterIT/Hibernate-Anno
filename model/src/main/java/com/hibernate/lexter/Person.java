@@ -24,15 +24,19 @@ import javax.persistence.OrderColumn;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.FetchType;
-import javax.persistence.*;
+import javax.persistence.Cacheable;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 @Entity
+@Cacheable
+@org.hibernate.annotations.Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
 @Table(name="persontbl")
 public class Person{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", insertable = false, updatable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
 	private int id;
 
     @Embedded
