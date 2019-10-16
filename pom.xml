@@ -9,6 +9,7 @@
   <url>http://maven.apache.org</url>
   <properties>
     <projGroup>com.hibernate.lexter</projGroup>
+    <hiberVer>5.4.5.Final</hiberVer>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -40,7 +41,12 @@
       <dependency>
         <groupId>org.hibernate</groupId>
         <artifactId>hibernate-core</artifactId>
-        <version>5.4.5.Final</version>
+        <version>${hiberVer}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.hibernate</groupId>
+        <artifactId>hibernate-ehcache</artifactId>
+        <version>${hiberVer}</version>
       </dependency>
       <dependency>
         <groupId>org.mockito</groupId>
@@ -70,7 +76,11 @@
     <dependency>
         <groupId>org.hibernate</groupId>
         <artifactId>hibernate-core</artifactId>
-    </dependency>
+    </dependency> 
+      <dependency>
+        <groupId>org.hibernate</groupId>
+        <artifactId>hibernate-ehcache</artifactId>
+      </dependency>
     <dependency>
         <groupId>javassist</groupId>
         <artifactId>javassist</artifactId>
