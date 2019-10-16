@@ -10,6 +10,7 @@ import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import javax.persistence.TypedQuery;
 import org.hibernate.Query;
 
 
@@ -67,12 +68,11 @@ public class HibernateUtil {
 
 	public List getObject(Class className) {
 		startSession();
-		CriteriaBuilder cb = session.getCriteriaBuilder();
-		CriteriaQuery cr = cb.createQuery(className);
-		Root root = cr.from(className);
-		cr.select(root);
-
-		Query query = session.createQuery(cr);
+		CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+		CriteriaQuery criteriaQuery = criteriaBuilder.createQuery(className);
+		Root root = criteriaQuery.from(className);
+		Query query = session.createQuery(criteriaQuery);
+		query.setCacheable(true);
 		List results = query.getResultList();
 		endSession();
 		return results;
@@ -143,6 +143,7 @@ public class HibernateUtil {
 			cr.orderBy(cb.asc(root.get(field)));
 		}
 		Query query = session.createQuery(cr);
+		query.setCacheable(true);
 		List results = query.getResultList();
 		endSession();
 		return results;

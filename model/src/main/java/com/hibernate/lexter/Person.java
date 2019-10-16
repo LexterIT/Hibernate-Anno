@@ -30,7 +30,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 @Entity
 @Cacheable
-@org.hibernate.annotations.Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
+@Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
 @Table(name="persontbl")
 public class Person{
 
@@ -57,13 +57,13 @@ public class Person{
     @Column(name = "status")
     private boolean isCurEmp;
 
-    @org.hibernate.annotations.Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
+    @Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER,orphanRemoval = true)
     @JoinColumn(name="empid")
     @OrderColumn(name="index")
     private List<ContactInfo> contactInfo;
 
-    @org.hibernate.annotations.Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
+    @Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
     @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER, targetEntity = Role.class)
     @JoinTable(name = "personroletbl",
         joinColumns = {@JoinColumn(name = "empid")},
