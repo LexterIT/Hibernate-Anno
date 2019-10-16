@@ -55,13 +55,11 @@ public class PersonRoleService {
     	System.out.println(roles);
     	while(!choice.equalsIgnoreCase("no")) {
     		if(choice.equalsIgnoreCase("yes")) {
-    			// while(!checkContains(rolesString, roleChoice))
     			while(!rolesString.contains(roleChoice)) {
 					roleChoice = scannerUtil.getInputString("Please Choose a Role");
 				}
 		    	roleId = rolesString.indexOf(roleChoice);
 				tempRole = createPersonRole(roles, roleId);
-				// if(!curRoles.add(tempRole)) 
 				if(checkContains(tempString,roleChoice)){
 					System.out.println("This Person already have the Role:"+roleChoice);
 				} else {
