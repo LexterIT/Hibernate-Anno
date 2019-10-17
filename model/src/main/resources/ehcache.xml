@@ -17,4 +17,34 @@
 	memoryStoreEvictionPolicy="FIFO">
 		<persistence strategy="localTempSwap"/>
 	</cache>
+	<cache name="com.hibernate.lexter.Person.contactInfo"
+	eternal="true"
+	timeToIdleSeconds="0"
+	timeToLiveSeconds="0"
+	memoryStoreEvictionPolicy="FIFO">
+		<persistence strategy="localTempSwap"/>
+	</cache>
+	<cache name="com.hibernate.lexter.Person.roles"
+	eternal="true"
+	timeToIdleSeconds="0"
+	timeToLiveSeconds="0"
+	memoryStoreEvictionPolicy="FIFO">
+		<persistence strategy="localTempSwap"/>
+	</cache>
+	
+	<cache name="com.hibernate.lexter.Role"
+	eternal="true"
+	timeToIdleSeconds="0"
+	timeToLiveSeconds="0"
+	memoryStoreEvictionPolicy="FIFO">
+		<persistence strategy="localTempSwap"/>
+	</cache>
+	<cache name="com.hibernate.lexter.ContactType"
+	eternal="true"
+	timeToIdleSeconds="0"
+	timeToLiveSeconds="0"
+	memoryStoreEvictionPolicy="FIFO">
+		<persistence strategy="localTempSwap"/>
+	</cache>
+	
 </ehcache>
