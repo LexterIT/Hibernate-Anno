@@ -1,0 +1,20 @@
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	name="CacheManager" maxBytesLocalHeap="50m" maxBytesLocalDisk="1g">
+	<diskStore path="user.dir/app/target/cache"/>
+
+	<defaultCache
+	eternal="true"
+	timeToIdleSeconds="120"
+	timeToLiveSeconds="120"
+	memoryStoreEvictionPolicy="FIFO"
+	overflowToDisk="true">
+	</defaultCache>
+
+	<cache name="com.hibernate.lexter.Person"
+	eternal="true"
+	timeToIdleSeconds="0"
+	timeToLiveSeconds="0"
+	memoryStoreEvictionPolicy="FIFO">
+		<persistence strategy="localTempSwap"/>
+	</cache>
+</ehcache>
