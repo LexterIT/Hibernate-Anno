@@ -38,6 +38,9 @@ public class App
     			case "ROLE":
                     roleService.roleMenu();
     			break;
+                case "EXIT":
+                    System.out.println("Program terminating!");
+                    System.exit(0);
     		}
     	}
     }
@@ -47,6 +50,7 @@ public class App
     	System.out.println("Enter SORT\tto Sort\tList of Person");
     	System.out.println("Enter PERSON\tto Perform on Person");
     	System.out.println("Enter ROLE\tto Perform on Roles");
+        System.out.println("Enter EXIT\tto Exit");
     }
 
    
