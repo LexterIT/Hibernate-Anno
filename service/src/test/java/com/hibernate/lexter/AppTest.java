@@ -185,7 +185,7 @@ public class AppTest
         Role testRole = new Role(string);
         when(hibernateUtil.getSingleObject(Role.class, 1)).thenReturn(testRole);
         doNothing().when(hibernateUtil).updateObject(testRole);
-        roleServ.updateRole(1, newRole);
+        roleServ.updateRole(1, testRole, newRole);
         assertEquals(testRole.toString(), newRole);
     }
     public void testReadRole() {
@@ -193,7 +193,7 @@ public class AppTest
         List<Role> roles = new ArrayList<Role>();
         roles.add(new Role("testRole"));
         roles.add(new Role("newRole"));
-        when(hibernateUtil.getObject(Role.class)).thenReturn(roles);
+        when(hibernateUtil.getSorted(Role.class,"id","asc")).thenReturn(roles);
         roles = roleServ.readRoles();
         assertEquals(roles.get(0).toString(), "testRole");
         assertEquals(roles.get(1).toString(), "newRole");

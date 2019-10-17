@@ -25,6 +25,7 @@ public class RoleService {
 
 	public void roleMenu() {
 		String action;
+		Role role;
 		while(true) {
 			int id;
 			showRoleActions();
@@ -32,7 +33,7 @@ public class RoleService {
 			switch(action.toUpperCase()) {
 				case "ADD":
 				String roleName = scannerUtil.getInputString("Title of new Role");
-				Role role = createRole(roleName);
+				role = createRole(roleName);
 				addRole(role);
 				break;
 				case "REMOVE":
@@ -41,13 +42,18 @@ public class RoleService {
 				break;
 				case "UPDATE":
 				id = scannerUtil.getInputInt("Enter the ID of Role you want to Update");
-				String rolereplacement = scannerUtil.getInputString("Enter the Role Replacement You want");
-				updateRole(id, rolereplacement);
+				role =(Role) hibernateUtil.getSingleObject(Role.class, id);
+				if(role != null) {
+					String rolereplacement = scannerUtil.getInputString("Enter the Role Replacement You want");
+					updateRole(id, role, rolereplacement);
+				} else {
+					System.out.println("Role with this ID does not Exist!");
+				}
 				break;
 				case "VIEW":
 				List<Role> roles = readRoles();
 				for(Role rl : roles) 
-					System.out.println(rl);
+					System.out.println(rl.getId() + ".)" + rl);
 				break;
 				case "EXIT":
 				return;
@@ -83,12 +89,11 @@ public class RoleService {
 
 	public List<Role> readRoles() {
 		List<Role> roles = null;
-		roles = hibernateUtil.getObject(Role.class);
+		roles = hibernateUtil.getSorted(Role.class, "id", "asc");
 		return roles;
 	}
 
-	public void updateRole(int id, String rolereplacement) {
-		Role role =(Role) hibernateUtil.getSingleObject(Role.class, id);
+	public void updateRole(int id, Role role,String rolereplacement) {
 		role.setRole(rolereplacement);
 		hibernateUtil.updateObject(role);
 	}
