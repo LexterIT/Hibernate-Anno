@@ -125,7 +125,6 @@ public class PersonService {
     public void updatePersonInput() {
         int id = 0;
         boolean valid = false;
-        List<Person> people = hibernateUtil.getObject(Person.class);
         Person person = null;
         while(valid != true) {
             id = scannerUtil.getInputInt("Enter the ID of Person you want to Update:");
