@@ -64,7 +64,7 @@ public class Person{
     private List<ContactInfo> contactInfo;
 
     @Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
-    @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER, targetEntity = Role.class)
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER, targetEntity = Role.class)
     @JoinTable(name = "personroletbl",
         joinColumns = {@JoinColumn(name = "empid")},
         inverseJoinColumns = {@JoinColumn(name = "roleid")} )
