@@ -24,6 +24,8 @@ import javax.persistence.OrderColumn;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.FetchType;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import javax.persistence.Cacheable;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -58,13 +60,15 @@ public class Person{
     private boolean isCurEmp;
 
     @Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER,orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @Fetch(FetchMode.JOIN)
     @JoinColumn(name="empid")
     @OrderColumn(name="index")
     private List<ContactInfo> contactInfo;
 
     @Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER, targetEntity = Role.class)
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @Fetch(FetchMode.JOIN)
     @JoinTable(name = "personroletbl",
         joinColumns = {@JoinColumn(name = "empid")},
         inverseJoinColumns = {@JoinColumn(name = "roleid")} )
