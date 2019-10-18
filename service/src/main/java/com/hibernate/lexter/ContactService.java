@@ -70,6 +70,7 @@ public class ContactService {
         List<String> stringContactTypes = setContactTypes(contactTypes);
     	int index = scannerUtil.getInputInt("Enter Index of Contact to Update");
     	ContactInfo contact = contactInfos.get(index);
+        System.out.println(stringContactTypes);
         while(!stringContactTypes.contains(contactType)) {
     		contactType = scannerUtil.getInputString("Enter new Contact Type");
 		}		
