@@ -77,14 +77,12 @@ public class RoleService {
 	public void addRole(Role role) {
 		List<Role> curRoles = hibernateUtil.getObject(Role.class);
 		boolean existing = false;
-		for(Role tempRole : curRoles) {
-			if(tempRole.toString().equalsIgnoreCase(role.toString())) {
-				existing = true;
-				System.out.println("The Role:" +role.toString() + " is already existing in the database");
-				return;
-			}
+		if(checkExisting(role)) {
+			System.out.println("The Role:" +role.toString() + " is already existing in the database");
+			return;
+		} else {
+			hibernateUtil.insertObject(role);
 		}
-		hibernateUtil.insertObject(role);
 	}
 
 	public List<Role> readRoles() {
@@ -94,8 +92,25 @@ public class RoleService {
 	}
 
 	public void updateRole(int id, Role role,String rolereplacement) {
+		List<Role> curRoles = hibernateUtil.getObject(Role.class);
+		boolean existing = false;
 		role.setRole(rolereplacement);
-		hibernateUtil.updateObject(role);
+		if(checkExisting(role)) {
+			System.out.println("The Role:" +role.toString() + " is already existing in the database");
+			return;
+		} else {
+			hibernateUtil.updateObject(role);
+		}
+	}
+
+	public boolean checkExisting(Role role) {
+		List<Role> curRoles = hibernateUtil.getObject(Role.class);
+		for(Role tempRole : curRoles) {
+			if(tempRole.toString().equalsIgnoreCase(role.toString())) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public void deleteRole(int id) {	
