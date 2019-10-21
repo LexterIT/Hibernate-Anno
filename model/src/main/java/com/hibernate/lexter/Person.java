@@ -26,6 +26,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.FetchType;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.BatchSize;
 import javax.persistence.Cacheable;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -62,6 +63,7 @@ public class Person{
     @Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @Fetch(FetchMode.JOIN)
+    @BatchSize(size = 5)
     @JoinColumn(name="empid")
     @OrderColumn(name="index")
     private List<ContactInfo> contactInfo;
@@ -69,6 +71,7 @@ public class Person{
     @Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @Fetch(FetchMode.JOIN)
+    @BatchSize(size = 5)
     @JoinTable(name = "personroletbl",
         joinColumns = {@JoinColumn(name = "empid")},
         inverseJoinColumns = {@JoinColumn(name = "roleid")} )
