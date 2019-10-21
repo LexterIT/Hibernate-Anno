@@ -106,7 +106,8 @@ public class PersonService {
     }
 
     public Person createPerson(Name name, Address address, Double gwa, Date birthday, Date dateHired, boolean status, List<ContactInfo> contactInfos, Set<Role> roles) {
-        Person person = new Person(name);
+        Person person = new Person();
+        person.setName(name);
         person.setAddress(address);
         person.setBirthday(birthday);
         person.setDateHired(dateHired);
