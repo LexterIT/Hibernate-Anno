@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashSet;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -48,12 +50,14 @@ public class Person{
     @Embedded
     private Address address;
 
+    @Temporal(TemporalType.DATE)
     @Column(name = "birthday")
     private Date birthday;
 
     @Column(name = "gwa")
     private Double gwa;
 
+    @Temporal(TemporalType.DATE)
     @Column(name = "datehired")
     private Date dateHired;
 
